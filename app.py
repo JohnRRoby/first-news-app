@@ -1,5 +1,6 @@
 import csv
 from flask import Flask
+from flask import abort
 from flask import render_template # this function combines data w HTML to make webpage
 app = Flask(__name__)
 
@@ -23,6 +24,7 @@ def detail(row_id):
 		for row in object_list:
 			if row["id"] == row_id:
 				return render_template(template, object = row)
+		abort(404)
 # above note both url route and function take an argument, row_id.
 # goal is for number passed to URL to go into the function where it will be used to 
 # pull the corresponding ID from the csv. then we'll pass that to the template to render the unique page.
